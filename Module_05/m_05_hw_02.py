@@ -31,4 +31,4 @@ def find_articles(key, letter_case=False):
                 updated_list.append(title)
     return updated_list
 
-print(find_articles('that'))
+print(find_articles('That NEW'))
