@@ -1,5 +1,5 @@
-message = input("Введите сообщение: ")
-offset = int(input("Введите сдвиг: "))
+message = input("Input the message: ")
+offset = int(input("Input moving code: "))
 encoded_message = ""
 for ch in message:
     if ord(ch)>=65 and ord(ch)<=90:
@@ -18,4 +18,4 @@ for ch in message:
         new_char = " "
     encoded_message = encoded_message+new_char
 print(encoded_message)
-print("I think that ama cool boy!!")
+print("Я тут шото затестировал и пробую теперь это сделать пуш")
