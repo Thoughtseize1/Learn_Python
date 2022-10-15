@@ -32,3 +32,4 @@ def find_articles(key, letter_case=False):
     return updated_list
 
 print(find_articles('That NEW'))
+print("Testing new commit")
