@@ -31,17 +31,4 @@ def find_articles(key, letter_case=False):
                 updated_list.append(title)
     return updated_list
 
-print(find_articles('Ocean'))
-# print(articles_dict[0])
-        
-        
-            
-        
-        
-            
-        
-        
-            
-        
-            
-    
+print(find_articles('that'))
