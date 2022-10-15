@@ -18,3 +18,4 @@ for ch in message:
         new_char = " "
     encoded_message = encoded_message+new_char
 print(encoded_message)
+print("I think that ama cool boy!!")
