@@ -5,4 +5,4 @@ def real_len(text)->int:
 
 checked_string = "Alex\nK\dfe23\t\f\v.\r"
 print(checked_string)
-#print(real_len(checked_string))
+print(real_len(checked_string))
