@@ -27,9 +27,11 @@ def find_articles(key, letter_case=False):
         for content in title.items():
             if not letter_case and str(content[1]).lower().find(key.lower()) != -1:
                 updated_list.append(title)
+                break
             elif str(content[1]).find(key) != -1:
                 updated_list.append(title)
+                break
     return updated_list
 
-print(find_articles('That NEW'))
+print(find_articles('The'))
 print("Testing new commit")
