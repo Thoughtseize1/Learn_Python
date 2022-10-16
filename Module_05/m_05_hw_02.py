@@ -21,6 +21,7 @@ articles_dict = [
     },
 ]
 
+
 def find_articles(key, letter_case=False):
     updated_list = []
     for title in articles_dict:
@@ -32,6 +33,7 @@ def find_articles(key, letter_case=False):
                 updated_list.append(title)
                 break
     return updated_list
+
 
 print(find_articles('The'))
 print("Testing new commit")
