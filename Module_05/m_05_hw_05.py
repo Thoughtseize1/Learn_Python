@@ -34,6 +34,6 @@ def get_phone_numbers_for_countries(list_phones):
 
 
 phones_numbers = ["+380993672266", '   065-66-2711',
-                  '   -813424715', '+8861573222']
+                  '   -813424715', '+8861573222', '+38056456-33-11']
 
 get_phone_numbers_for_countries(phones_numbers)
