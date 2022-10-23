@@ -3,8 +3,8 @@ def write_employees_to_file(employee_list, path):
     try:
         for employee in employee_list:
             if type(employee) is list:
-                for man in employee:
-                    my_file.write(man + '\n')
+                for person in employee:
+                    my_file.write(person + '\n')
             else:
                 my_file.write(employee + '\n')
     finally:
