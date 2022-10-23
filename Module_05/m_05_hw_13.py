@@ -6,6 +6,8 @@ def find_all_emails(text):
     result = re.findall(pattern, text)
     print(result)
     return result
+# Another working regex
+# [a-zA-Z]{1}[\w\.]+@[a-zA-z]+\.[a-zA-Z]{2,}
 
 
 find_all_emails(
