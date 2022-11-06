@@ -1,0 +1,9 @@
+setup.py
+clean_folder_nick/__init__.py
+clean_folder_nick/clean.py
+clean_folder_nick/file_parser.py
+clean_folder_nick.egg-info/PKG-INFO
+clean_folder_nick.egg-info/SOURCES.txt
+clean_folder_nick.egg-info/dependency_links.txt
+clean_folder_nick.egg-info/entry_points.txt
+clean_folder_nick.egg-info/top_level.txt

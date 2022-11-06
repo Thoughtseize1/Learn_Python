@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: clean-folder-nick
+Version: 0.0.3
+Summary: Very useful code for sorting files in directory. This is package which sorting files in any directory. To start sorting use command "clean-folder"
+Author: Mykyta Sherstianykh
+Author-email: n.sher.test@gmail.com
+License: MIT
