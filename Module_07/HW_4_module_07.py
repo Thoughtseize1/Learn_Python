@@ -29,7 +29,7 @@ print(is_integer('+34    '))
 print(is_integer('-34bbbbbbbbb     '))
 print(is_integer('   +34 *@bb     '))
 print(is_integer('099     '))
-
+# Testing another function
 print(is_integer_reg('+34'))
 print(is_integer_reg('-34'))
 print(is_integer_reg('+3433!'))
