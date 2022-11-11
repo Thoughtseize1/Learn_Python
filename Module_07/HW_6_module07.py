@@ -21,5 +21,4 @@ def solve_riddle(riddle, word_length, start_letter, reverse=False):
 '''
 Функція solve_riddle повертає неправильний результат: 'r'. Очікувалося, що функція solve_riddle при отриманні параметра ('mi1powperet', 3, 'r', True) поверне наступну строку 'rep'
 '''
-
 print(solve_riddle('microwave', 4, 'w', False))
