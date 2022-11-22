@@ -33,13 +33,24 @@ def change_phone(args):
 
 @input_error
 def show_number(args):
+    if not USERS:
+        return 'Your adress book is empty'
     user = args[0]
     phone = USERS[user]
     return f'{user} : {phone}'
 
 
+@input_error
+def delete_user(args):
+    name = args[0]
+    del USERS[name]
+    return f"User with name {name} was deleted"
+
+
 def show_all(_):
     result = ''
+    if not USERS:
+        return 'Your adress book is empty'
     for name, phone in USERS.items():
         result += f"{name}: {phone} \n"
     return result
@@ -69,20 +80,22 @@ HANDLERS = {
     'show': show_all,
     'show all': show_all,
     'phone': show_number,
-    'help': avaliable_comands
+    'help': avaliable_comands,
+    'del': delete_user,
+    'delete': delete_user
 }
 
 
 def parser_input(user_input):
     cmd, *args = user_input.split()
     try:
-        handler = HANDLERS.get(cmd.lower())
+        handler = HANDLERS[cmd.lower()]
     except KeyError:
         if args:
             cmd = f'{cmd} {args[0]}'
             args = args[1:]
-        handler = HANDLERS(cmd.lower()),
-        pass
+        else:
+            def handler(_): return "Unknown command"
     return handler, args
 
 
@@ -93,6 +106,7 @@ def main():
         result = handler(*args)
         if result == 'exit':
             break
+
         print(result)
 
 
