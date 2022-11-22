@@ -66,7 +66,7 @@ def exit(_):
 
 
 def avaliable_comands(_):
-    return 'Use "add" to add new user \nUse "change" to change user\'s number\nUse "show" or "show all" to see all adress book. \nUse "exit" or "q" to exit from bot'
+    return 'Use "add" to add new user \nUse "change" to change user\'s number\nUse "show" or "show all" to see all adress book. \nUse "exit" or "q" to exit from bot\nUse "del" or "delete" to delete user'
 
 
 HANDLERS = {
