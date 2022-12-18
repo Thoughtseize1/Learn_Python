@@ -8,18 +8,16 @@ class AdressBook(UserDict):
         self.data[record.name.value] = record
 
     def look_book(self):
-        if not self.items():
-            print("The book is empty")
-        else:
-            for name, phone in self.data.items():
+        if self.items():
+            for name, record in self.data.items():
                 print(f"Name: {name}")
-                print("Phones: ", end="")
-                for customer_phone in phone.phones:
-                    if len(phone.phones) > 1:
-                        print(f"{customer_phone.value}, ", end="")
-                    else:
-                        print(f"{customer_phone.value} ")
-                print()
+                print('Phones: ' +
+                      ', '.join([phone.value for phone in record.phones]))
+                if record.birthday:
+                    print('Birthday:', record.birthday.value)
+        else:
+            print("The book is empty")
+        print()
 
     def remove_record(self, name: str):
         self.data.pop(name)
@@ -70,15 +68,15 @@ class Birthday(Field):
     @Field.value.setter
     def value(self, value):
         today_is = datetime.now().date()
-        birth_date = datetime.strptime(value, '%Y-%m-%d').date()
+        birth_date = datetime.strptime(value, '%d-%m-%Y').date()
         if birth_date > today_is:
             raise ValueError(
                 "Wrong enter. Up to date")
-        self._value = value
+        self._value = birth_date
 
 
 class Record():
-    def __init__(self, name, *phones, birthday):
+    def __init__(self, name, *phones, birthday=None):
         self.name = Name(name)
         self.phones = []
         self.birthday = Birthday(birthday) if birthday else None
@@ -97,23 +95,23 @@ class Record():
             if record_phone.value == phone:
                 self.phones.remove(record_phone)
 
+    def add_birthday(self, date):
+        self.birthday = Birthday(date)
+
     def get_days_to_next_birthday(self):
-        if not self.birthday:
+        if not self.birthday._value:
             raise ValueError("Please, add birthday firstly")
         today = datetime.now().date()
-        birthday = datetime.strptime(self.birthday.value, '%Y-%m-%d').date()
-
         next_birthday_year = today.year
 
-        if today.month >= birthday.month and today.day > birthday.day:
+        if today.month >= self.birthday._value.month and today.day > self.birthday._value.day:
             next_birthday_year += 1
 
         next_birthday = datetime(
             year=next_birthday_year,
-            month=birthday.month,
-            day=birthday.day
+            month=self.birthday._value.month,
+            day=self.birthday._value.day
         )
-
         return (next_birthday.date() - today).days
 
 
@@ -166,18 +164,17 @@ def delete_user(args):
 
 
 @input_error
-def birthday_func(data):
-    name, date = data.strip().split(' ')
+def birthday_func(args):
+    name, date = args[0], args[1]
     record = MY_BOOK[name]
     record.add_birthday(date)
-    return f'For {name} you add Birthday {date}'
+    return f'For {name} you added Birthday {date}'
 
 
 @input_error
 def next_birthday_func(name):
-    name = name.strip()
-    record = MY_BOOK[name]
-    return f"Days to next {name}'s birthday will be in {record.get_days_to_next_birthday()}."
+    record = MY_BOOK[name[0]]
+    return f"Days to next {name[0]}'s birthday will be in {record.get_days_to_next_birthday()} days."
 
 
 def show_all(_):
@@ -195,7 +192,15 @@ def exit(_):
 
 
 def avaliable_comands(_):
-    return 'Use "add" to add new user \nUse "change" to change user\'s number\nUse "show" or "show all" to see all adress book. \nUse "exit" or "q" to exit from bot\nUse "del" or "delete" to delete user'
+    return '''
+    Use "add" *name* *phone* to add new user
+    Use "change" *name* *phone* to change user\'s number
+    Use "show" or "show all" to see all adress book. 
+    Use "exit" or "q" to exit from bot
+    Use "del" *user* or "delete" to delete user
+    Use "birthday" *user* *birthday* to add birthday to contact in format "DD-MM-YYY"
+    Use "next" *user* if you want to know how mane days before birthday
+    '''
 
 
 HANDLERS = {
@@ -213,7 +218,7 @@ HANDLERS = {
     'del': delete_user,
     'delete': delete_user,
     'birthday': birthday_func,
-    'days to birthday': next_birthday_func
+    'next': next_birthday_func
 }
 
 
